@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './App.css'
 import Friend from './components/ex-1/Friend';
 import DogGallery from './components/ex-2/DogGallery';
 import RandomJoke from './components/ex-3/RandomJoke';
