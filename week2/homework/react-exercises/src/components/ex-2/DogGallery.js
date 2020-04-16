@@ -18,9 +18,9 @@ const DogGallery = () => {
     const Dogphotos = dogPhoto.map((dogPhoto, i) => <DogPhoto key={i} imgURL={dogPhoto} />);
     return (
         <div>
-            <Button clickHandler={getDogPhoto}></Button>
+            <Button className='btn' clickHandler={getDogPhoto} />
             <div className='dogPhotos'>
-                {isLoading ? <p>You poor thing without a dog. Get you dog by clicking the button above.</p> : Dogphotos}        
+                {isLoading ? <p className='pTag'>You poor thing without a dog. Get you dog by clicking the button above.</p> : Dogphotos}        
             </div>
         </div>
     )

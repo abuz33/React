@@ -3,7 +3,7 @@ import React from 'react';
 const Button = ({ clickHandler }) => {
     return (
         <>
-            <button onClick = { clickHandler } >Get a friend</button>
+            <button onClick = { clickHandler } >Get a dog</button>
         </>
     )
 }
