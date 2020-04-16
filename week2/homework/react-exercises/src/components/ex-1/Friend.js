@@ -11,7 +11,7 @@ import Button from './Button';
 
 const Friend = () => {
     const [err, setErr] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const [friend, setFriend] = useState({
         name:{
                 title: "Mr",
@@ -37,7 +37,7 @@ const Friend = () => {
     
 
     async function getFriend()  {
-        setIsLoading(true);
+        setIsLoading(false);
 
         const data = await axios.get("https://www.randomuser.me/api?results=1").then(res => res.data.results[0]);
         const { name, location, email, phone, picture } = data;
@@ -52,7 +52,7 @@ const Friend = () => {
 
             <Button clickHandler={getFriend} />
             {err && <p>{err}</p> }
-            {isLoading ?  <FriendProfile friend={friend} />  : <p>Lodaing some friends for you.</p>}
+            {isLoading ?  <p>Lodaing some friends for you.</p> : <FriendProfile friend={friend} />}
     
         </div>
     );
