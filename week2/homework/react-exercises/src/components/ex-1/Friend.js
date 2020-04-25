@@ -11,38 +11,22 @@ import Button from './Button';
 
 const Friend = () => {
     const [err, setErr] = useState('');
-    const [isLoading, setIsLoading] = useState(true);
-    const [friend, setFriend] = useState({
-        name:{
-                title: "Mr",
-                first: "Lance",
-                last: "Boyd"
-            },
-        location: {
-                    street: {
-                        number: 67,
-                        name: "George Street"
-                        },
-                    city: "Bangor",
-                    "country": "United Kingdom",
-                    },
-        email: "lance.boyd@example.com",
-        phone: "019467 54023",
-        picture: {
-            "large": "https://randomuser.me/api/portraits/med/men/40.jpg"
-        }
-    });
+    const [isLoading, setIsLoading] = useState(false);
+    const [friend, setFriend] = useState(null);
     
 
     
 
     async function getFriend()  {
-        setIsLoading(false);
+        setIsLoading(true);
 
-        const data = await axios.get("https://www.randomuser.me/api?results=1").then(res => res.data.results[0]);
-        const { name, location, email, phone, picture } = data;
-        setFriend({ name, location, email, phone, picture });
-        console.log(data)
+        fetch("https://www.randomuser.me/api?results=1")
+            .then(res => res.json())
+            .then(data => console.log(data.results[0]))
+            .finally(() => setIsLoading(false));
+        // const { name, location, email, phone, picture } = data;
+        // setFriend({ name, location, email, phone, picture });
+        // console.log(data)
         return data;
 
     };
