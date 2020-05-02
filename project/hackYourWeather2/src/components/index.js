@@ -1,18 +1,16 @@
 import React, { useState } from 'react'
 import SearchForm from './SearchForm'
 import WeatherCard from './WeatherCard'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import { toast } from 'react-toastify'
 
 const API_KEY = process.env.REACT_APP_OPENWEATHERMAP_API_KEY
 
-const Weather = () => {
+const Weather = (props) => {
   const [city, setCity] = useState('')
   const [cities, setCities] = useState([])
   const [Loaded, setLoaded] = useState(false)
-
-  const handleChange = (e) => {
-    setCity(e.target.value)
-  }
 
   const fetchData = (city) => {
     fetch(
@@ -39,6 +37,10 @@ const Weather = () => {
       })
   }
 
+  const handleChange = (e) => {
+    setCity(e.target.value)
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault()
     fetchData(city)
@@ -46,15 +48,28 @@ const Weather = () => {
   const deleteCity = (id) => {
     const leftCities = cities.filter((city) => city.id !== id)
     setCities(leftCities)
+    toast.warn('City Deleted', {
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    })
   }
 
   return (
     <div>
+      <ToastContainer autoClose={3000} hideProgressBar />
+
       <SearchForm onSubmit={handleSubmit} onChange={handleChange} />
       {Loaded &&
         cities.map((city) => (
           <div key={city.id}>
-            <WeatherCard city={city} onClick={deleteCity} />
+            <WeatherCard
+              city={city}
+              onClick={deleteCity}
+              parentCallback={props.parentCallback}
+            />
           </div>
         ))}
     </div>

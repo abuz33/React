@@ -1,15 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Weather from './components/index'
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
-function App() {
+import DetailWeatherCard from './components/DetailWeatherCard'
+
+function App({ props }) {
+  const [cityName, setCityName] = useState('')
+  const callBack = (city) => {
+    setCityName(city)
+  }
   return (
-    <div className="text-center">
-      <ToastContainer autoClose={3000} hideProgressBar />
-      <h1>Weather App</h1>
-      <Weather />
-    </div>
+    <Router>
+      <div className="text-center mt-4">
+        <h1>Weather App</h1>
+        <Switch>
+          <Route path="/" exact>
+            <Weather parentCallback={callBack} />
+          </Route>
+          <Route path="/:id">
+            <DetailWeatherCard city={cityName} />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   )
 }
 

@@ -1,10 +1,7 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-const WeatherCard = ({
-  city,
-
-  onClick,
-}) => {
+const WeatherCard = ({ city, onClick, ...props }) => {
   return (
     <div className="row d-flex justify-content-center ">
       <div className="card m-1" style={{ width: '30rem' }}>
@@ -30,6 +27,7 @@ const WeatherCard = ({
           <h1 className="card-title">
             {city.name}, {city.sys.country}
           </h1>
+
           <div className="card-subtitle mb-2 text-muted ">
             <h3>{city.weather[0].main}</h3>
             <p> {city.weather[0].description} </p>
@@ -41,6 +39,12 @@ const WeatherCard = ({
               Location: {city.coord.lon}, {city.coord.lat}
             </p>
           </div>
+          <Link
+            to={`/${city.id}`}
+            onClick={props.parentCallback(city.name + ', ' + city.sys.country)}
+          >
+            5 Day Forecast
+          </Link>
         </div>
       </div>
     </div>
