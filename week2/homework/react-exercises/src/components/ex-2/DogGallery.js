@@ -1,29 +1,40 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import './dogGallery.css';
+import React, { useState } from 'react'
+import axios from 'axios'
+import './dogGallery.css'
 
-import Button from './Button';
-import DogPhoto from './DogPhoto';
+import Button from './Button'
+import DogPhoto from './DogPhoto'
 
 const DogGallery = () => {
-    const [dogPhoto, setDogPhoto] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+  const [dogPhoto, setDogPhoto] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
 
-    const getDogPhoto = async () => {
-        setIsLoading(false);
-        const data = await axios.get('https://dog.ceo/api/breeds/image/random').then(res => res.data);
+  const getDogPhoto = async () => {
+    setIsLoading(false)
+    const data = await axios
+      .get('https://dog.ceo/api/breeds/image/random')
+      .then((res) => res.data)
 
-        setDogPhoto([...dogPhoto, data.message]);
-    }
-    const Dogphotos = dogPhoto.map((dogPhoto, i) => <DogPhoto key={i} imgURL={dogPhoto} />);
-    return (
-        <div>
-            <Button className='btn' clickHandler={getDogPhoto} />
-            <div className='dogPhotos'>
-                {isLoading ? <p className='pTag'>You poor thing without a dog. Get you dog by clicking the button above.</p> : Dogphotos}        
-            </div>
-        </div>
-    )
-};
+    setDogPhoto([...dogPhoto, data.message])
+  }
+  const Dogphotos = dogPhoto.map((dogPhoto, i) => (
+    <DogPhoto key={i} imgURL={dogPhoto} />
+  ))
+  return (
+    <div className="container">
+      <Button className="btn" clickHandler={getDogPhoto} />
+      <div className="dogPhotos">
+        {isLoading ? (
+          <p className="pTag">
+            You poor thing without a dog. Get you dog by clicking the button
+            above.
+          </p>
+        ) : (
+          Dogphotos
+        )}
+      </div>
+    </div>
+  )
+}
 
-export default DogGallery;
+export default DogGallery

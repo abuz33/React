@@ -1,8 +1,8 @@
-import React from 'react';
-import './App.css'
-import Friend from './components/ex-1/Friend';
-import DogGallery from './components/ex-2/DogGallery';
-import RandomJoke from './components/ex-3/RandomJoke';
+import React from 'react'
+
+import Friend from './components/ex-1/Friend'
+import DogGallery from './components/ex-2/DogGallery'
+import RandomJoke from './components/ex-3/RandomJoke'
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
       <DogGallery />
       <RandomJoke />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

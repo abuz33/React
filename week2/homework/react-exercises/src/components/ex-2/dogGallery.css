@@ -1,18 +1,22 @@
-img {
-    width: 200px;
+.container {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
-
-
+img {
+  width: 200px;
+}
 
 .dogPhotos {
   margin: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction:row;
+  flex-direction: row;
   flex-wrap: wrap;
 }
 
 .pTag {
-    text-align: center;
+  text-align: center;
 }

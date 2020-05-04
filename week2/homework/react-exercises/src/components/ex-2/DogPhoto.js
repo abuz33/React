@@ -1,9 +1,5 @@
-import React from 'react';
+import React from 'react'
 
-const DogPhoto = ( {imgURL} ) => (
-    <div>
-        <img src={imgURL} alt=""/>
-    </div>
-);
+const DogPhoto = ({ imgURL }) => <img src={imgURL} alt="" />
 
-export default DogPhoto;
+export default DogPhoto
